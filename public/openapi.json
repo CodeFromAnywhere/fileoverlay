@@ -1,0 +1,118 @@
+{
+  "$schema": "https://ref.actionschema.com/openapi.json",
+  "openapi": "3.1.0",
+  "x-actionschema": "0.0.1",
+
+  "info": {
+    "title": "Overlay File Transformer API",
+    "version": "1.0.0"
+  },
+  "servers": [{ "url": "https://fileoverlay.com" }],
+  "paths": {
+    "/overlay": {
+      "post": {
+        "summary": "Overlay multiple file objects",
+        "operationId": "overlay",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "properties": {
+                  "sources": {
+                    "description": "Sources that need to be overlayed onto each other",
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "additionalProperties": false,
+                      "required": ["fileObjectUrl"],
+                      "properties": {
+                        "fileObjectUrl": { "type": "string" },
+                        "fileObjectApiKey": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The changes and/or result. Can be accepted in multiple formats:\n\n- **application/x-patch (default)**: Will just respond with a string that can be applied using 'git apply'. This is the default when using curl.\n- **application/json**: will respond with a 'ContentResponse' that contains a file object, a diff, and the operations done to get here.\n- **text/event-stream**: Will stream the result back with incremental updates. The 'final' response will be what you would normally get when using 'application/json'",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "https://ref.actionschema.com/file-object.json"
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Invalid input parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - Invalid API keys",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "FileObject was not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "error": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [{}]
+      }
+    }
+  }
+}
