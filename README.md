@@ -46,9 +46,9 @@ Transform how you manage multi-repository architectures:
 POST /overlay
 {
   "sources": [
-    { "fileObjectUrl": "https://github.com/base/template" },
-    { "fileObjectUrl": "https://github.com/team/config" },
-    { "fileObjectUrl": "https://github.com/project/customization" }
+    { "fileObjectUrl": "https://uithub.com/base/template" },
+    { "fileObjectUrl": "https://uithub.com/team/config" },
+    { "fileObjectUrl": "https://uithub.com/project/customization" }
   ]
 }
 ```
