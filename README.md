@@ -82,7 +82,7 @@ Build a core product and layer client-specific customizations without maintainin
 
 ## Ready to Transform Your Repository Management?
 
-[Get Started with FileOverlay →](https://fileoverlay.com/docs)
+[Get Started with FileOverlay →](https://fileoverlay.com/openapi.html)
 
 ---
 
