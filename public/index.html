@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FileOverlay - Compose Repositories Like Code</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <nav class="fixed w-full bg-white/80 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-xl font-bold">FileOverlay</span>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <a href="https://github.com/codefromanywhere/fileoverlay"
+                        class="text-gray-600 hover:text-gray-900">GitHub</a>
+                    <a href="openapi.html"
+                        class="px-4 py-2 rounded-lg bg-gray-900 text-white hover:bg-gray-800">Documentation</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-16">
+        <!-- Hero Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold sm:text-6xl mb-6">Compose Repositories Like Code</h1>
+                <p class="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
+                    FileOverlay lets you seamlessly combine and transform Git repositories and file objects. Build
+                    modular architectures, manage templates, and compose codebases with the precision of a package
+                    manager.
+                </p>
+                <pre
+                    class="text-left rounded-lg bg-gray-900 p-4 overflow-x-auto max-w-2xl mx-auto"><code class="language-bash">curl https://fileoverlay.com/overlay/owner/base-repo/owner2/features</code></pre>
+            </div>
+        </section>
+
+        <!-- Features Grid -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="p-6 rounded-lg bg-gray-50">
+                        <h3 class="text-lg font-semibold mb-3">Modular Architecture at Scale</h3>
+                        <p class="text-gray-600">Break down monolithic codebases into composable units. Layer features,
+                            configurations, and customizations without maintaining forks.</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-gray-50">
+                        <h3 class="text-lg font-semibold mb-3">Template System</h3>
+                        <p class="text-gray-600">Start with a base template, layer in team configurations, and add
+                            project customizations while maintaining upstream updates.</p>
+                    </div>
+                    <div class="p-6 rounded-lg bg-gray-50">
+                        <h3 class="text-lg font-semibold mb-3">Modern Workflows</h3>
+                        <p class="text-gray-600">API-first design, streaming updates, flexible output formats, and
+                            secure authentication for private repositories.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Code Example -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">Technical Highlights</h2>
+            <pre class="rounded-lg bg-gray-900 p-4 overflow-x-auto max-w-3xl mx-auto"><code class="language-typescript">// Layer multiple repositories with a single API call
+POST /overlay
+{
+  "sources": [
+    { "fileObjectUrl": "https://github.com/base/template" },
+    { "fileObjectUrl": "https://github.com/team/config" },
+    { "fileObjectUrl": "https://github.com/project/customization" }
+  ]
+}</code></pre>
+        </section>
+
+        <!-- Use Cases -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-12 text-center">Perfect For</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-3">Standardized Team Templates</h3>
+                        <p class="text-gray-600">Maintain a single source of truth for project setups while allowing
+                            team-specific customizations.</p>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-3">Feature Management</h3>
+                        <p class="text-gray-600">Layer feature sets on demand, perfect for managing multiple client
+                            configurations or feature flags.</p>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-semibold mb-3">White-Label Solutions</h3>
+                        <p class="text-gray-600">Build a core product and layer client-specific customizations without
+                            maintaining separate forks.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA -->
+        <section class="py-20 text-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold mb-8">Ready to Transform Your Repository Management?</h2>
+                <div class="flex justify-center space-x-4">
+                    <a href="https://github.com/codefromanywhere/fileoverlay"
+                        class="px-6 py-3 rounded-lg bg-gray-900 text-white hover:bg-gray-800">View on GitHub</a>
+                    <a href="openapi.html"
+                        class="px-6 py-3 rounded-lg border border-gray-900 text-gray-900 hover:bg-gray-50">Read the
+                        Docs</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="py-8 border-t border-gray-200">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
+                <p>Built by developers, for developers. FileOverlay is open source and production-ready.</p>
+            </div>
+        </footer>
+    </main>
+
+    <script>
+        // Highlight code blocks
+        Prism.highlightAll();
+    </script>
+</body>
+
+</html>
