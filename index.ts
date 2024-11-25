@@ -33,7 +33,7 @@ const postOverlay = async (request: Request) => {
         accept: "application/json",
       };
       if (fileObjectApiKey) {
-        headers["Authorization"] = fileObjectApiKey;
+        headers["Authorization"] = `Bearer ${fileObjectApiKey}`;
       }
 
       if (!fileObjectUrl || !URL.canParse(fileObjectUrl)) {
@@ -72,12 +72,17 @@ const postOverlay = async (request: Request) => {
     }),
   );
 
-  const errors = fileObjects.filter((x) => x.result === null);
+  const errors = fileObjects.filter((x) => !x.result);
+  console.log(fileObjects, errors);
 
   if (errors.length > 0) {
     return new Response(
-      "Could not find all file objects: " + JSON.stringify(errors),
-      { status: 404 },
+      JSON.stringify(
+        { errors, error: "Could not find all file objects" },
+        undefined,
+        2,
+      ),
+      { status: 404, headers: { "Content-Type": "application/json" } },
     );
   }
 
@@ -110,6 +115,9 @@ const getOverlay = (request: Request) => {
     request.headers.get("Authorization")?.slice("Bearer ".length) ||
     url.searchParams.get("apiKey");
 
+  if (chunks.length < 4) {
+    return new Response("Please provide at least two sources", { status: 400 });
+  }
   const repos = chunks
     .map((chunk, index) => {
       if (index % 2 === 0) {
@@ -120,14 +128,20 @@ const getOverlay = (request: Request) => {
     .filter((x) => !!x)
     .map((x) => x!);
 
+  const last = repos[repos.length - 1];
+
   const sources = repos.map((repo, index) => {
     const isLast = index + 1 === repos.length;
-    const fileObjectApiKey = isLast && apiKey ? apiKey : undefined;
+
+    const fileObjectApiKey =
+      apiKey && (isLast || repo.owner === last.owner) ? apiKey : undefined;
     return {
       fileObjectUrl: `https://uithub.com/${repo.owner}/${repo.repo}`,
       fileObjectApiKey,
     };
   });
+
+  console.log(repos, sources);
 
   return postOverlay(
     new Request(url.origin + "/overlay", {
